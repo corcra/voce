@@ -11,15 +11,15 @@
   <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">  
   <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
   
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" type="text/css" media="all">
+  <link rel="stylesheet" href="{{ SITEURL}}/theme/css/bootstrap.min.css" type="text/css" media="all">
   <link rel="stylesheet" href="{{ SITEURL }}/theme/css/font.css" type="text/css" media="all">
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="{{ SITEURL }}/theme/css/all.css"> <!-- font awesome -->
   <link rel="stylesheet" href="{{ SITEURL }}/theme/css/style.css" type="text/css" media="all">
 
-  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
-  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="{{ SITEURL }}/theme/js/functions.js"></script>
+<script type="text/javascript" src="{{ SITEURL }}/theme/js/jquery.min.js"></script>
+<script type="text/javascript" src="{{ SITEURL }}/theme/js/modernizr.min.js"></script>
+<script type="text/javascript" src="{{ SITEURL }}/theme/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="{{ SITEURL }}/theme/js/functions.js"></script>
 
   
  
@@ -132,20 +132,17 @@
       </nav><!-- .site-navigation -->
 
       <div class="container">
-      <div id="logo">
-        <span class="site-name"><a class="navbar-brand" href="{{ SITEURL }}"><img width="310" src="{{ USER_LOGO_URL }}" class="attachment-full size-full" alt="logo">          </a>
-        </span><!-- end of .site-name -->
-      </div><!-- end of #logo -->
-        <div class="tagline">
-            {% if TAGS_URL %}
-              {% for tag, articles in tags|sort %}
-                <a href="{{ SITEURL }}/{{ tag.url }}" {{ 'class="active"' if  output_file == tag.url }}>{{ tag }} ({{ articles|count }})</a> &#124; 
+        <!--<div class="tagline">
+            {% if CATEGORY_URL %}
+            •
+              {% for category, articles in categories|sort %}
+                <a href="{{ SITEURL }}/{{ category.url }}" {{ 'class="active"' if  output_file == category.url }}>{{ category }} ({{ articles|count }})</a> •
               {% endfor %}
-            {% endif %}
-            {% if ARCHIVES_URL %}
-                <a href="{{ SITEURL }}/{{ ARCHIVES_URL }}" {{ 'class="active"' if  output_file == ARCHIVES_URL }}>{{ 'Archives ('+ articles|count|string + ')' if  articles|count > all_articles|count  else 'Archives (' + all_articles|count|string + ')'}}</a>
-            {% endif %}
-        </div>
+              {% endif %}-->
+            <!-- {% if ARCHIVES_URL %}
+                <a href="{{ SITEURL }}/{{ ARCHIVES_URL }}" {{ 'class="active"' if  output_file == ARCHIVES_URL }}>{{ 'archives ('+ articles|count|string + ')' if  articles|count > all_articles|count  else 'archives (' + all_articles|count|string + ')'}}</a>
+                {% endif %} -->
+                <!--</div>-->
     </div>
 
   </header><!-- #masthead -->
@@ -170,22 +167,9 @@
   </div><!-- close .site-content -->
 
 
-
-
-  <div id="footer-area">
     <footer id="colophon" class="site-footer" role="contentinfo">
-      <div class="site-info container">
-        <div class="row">
-                    <div class="copyright col-md-12">
-                    <a href="{{ SITEURL }}/pages/privacy-policy">Privacy Policy</a> | 
-                    <a href="{{ SITEURL }}/pages/terms-and-conditions">Terms & Conditions</a><br />
-                    This site uses the <a href="https://github.com/limbenjamin/voce">voce</a> theme by <a href="//limbenjamin.com/">Benjamin Lim</a><br />
-                    &copy; 2020 <a href="{{ SITEURL }}">{{ AUTHOR }}</a> </div>
-        </div>
-      </div><!-- .site-info -->
-      <div class="scroll-to-top" style="display: none;"><i class="fa fa-angle-up"></i></div><!-- .scroll-to-top -->
+    <div class="scroll-to-top" style="display: none;"><i class="fa fa-angle-up"></i></div><!-- .scroll-to-top -->
     </footer><!-- #colophon -->
-  </div>
 
   {% block scripts %}
   <script type="text/javascript">
@@ -194,31 +178,6 @@
       window.scroll(0, document.getElementById('main').offsetTop);
     }})
   </script>
-
-  {% if MANGLE_EMAILS %}
-  <script type="text/javascript">
-    window.addEventListener('load', function(){
-      var e = document.querySelectorAll(".email");
-      for (var i = 0; i < e.length; i++) {
-        var email = e[i].getAttribute("data-email")
-        var title = e[i].getAttribute("data-title")
-        if (email){
-          e[i].href = email.split("").reverse().join("");
-          e[i].removeAttribute("data-email");
-          e[i].removeAttribute("data-title");
-          e[i].removeAttribute("class");
-          if (title){
-            e[i].setAttribute("title", title);
-          }
-          else{
-            e[i].removeAttribute("title");
-          }
-        }
-      }
-    })
-  </script>
-  {% endif %}
-
 
   {% endblock scripts %}
 </body>
