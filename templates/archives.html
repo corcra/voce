@@ -1,6 +1,6 @@
 {% extends "base.html" %}
-{% block metatitle %}Archive{% endblock %}
-{% block title %}Archive{% endblock %}
+{% block metatitle %}Archive | {{ SITENAME }}{% endblock %}
+{% block title %}Archive | {{ SITENAME }}{% endblock %}
 
 {% block description %}A listing of all articles on this site{% endblock %}
 
@@ -10,15 +10,26 @@
     <dl>
       {% for year, year_articles in articles|groupby('date.year')|reverse %}
         <h2>{{ year }}</h2>
-        {% for _, month_articles in year_articles|groupby('date.month')|reverse %}
-          {# A little gross, but works (need a date object to get the month name). #}
-          <h3>{{ month_articles[0].date.strftime('%B') }}</h3>
-          <ul>
-            {% for article in month_articles %}
-              <li><time datetime="{{ article.date.isoformat() }}">{{ article.date.strftime('%b %d, %Y') }}</time> - <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></li>
+        {% if year_articles|length > 4 %}
+            {# Break into months #}
+            {% for _, month_articles in year_articles|groupby('date.month')|reverse %}
+              {# A little gross, but works (need a date object to get the month name). #}
+              <h3>{{ month_articles[0].date.strftime('%B') }}</h3>
+              <ul>
+                {% for article in month_articles %}
+                <li><time datetime="{{ article.date.isoformat() }}">{{ article.date.strftime('%b %d, %Y') }}</time> - <a href="{{ SITEURL }}/{{ article.url }}" class="{{ article.category }}">{{ article.title }}</a></li>
+                {% endfor %}
+              </ul>
+            {% endfor %}
+        {% endif %}
+        {% if year_articles|length < 5 %}
+            {# Don't break into months #}
+            <ul>
+            {% for article in year_articles %}
+            <li><time datetime="{{ article.date.isoformat() }}">{{ article.date.strftime('%b %d, %Y') }}</time> - <a href="{{ SITEURL }}/{{ article.url }}" class="{{ article.category }}">{{ article.title }}</a></li>
             {% endfor %}
           </ul>
-        {% endfor %}
+        {% endif %}
       {% endfor %}
     </dl>
   </div>

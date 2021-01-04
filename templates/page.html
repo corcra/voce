@@ -1,6 +1,6 @@
 {% extends "base.html" %}
-{% block metatitle %}{{ page.title|striptags|escape }}{% endblock %}
-{% block title %}{{ page.title|striptags|escape }}{% endblock %}
+{% block metatitle %}{{ page.title|striptags|escape }} | {{ SITENAME }}{% endblock %}
+{% block title %}{{ page.title|striptags|escape }} | {{ SITENAME }}{% endblock %}
 {% block description %}{{ page.summary|striptags|escape }}{% endblock %}
 
 

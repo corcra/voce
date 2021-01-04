@@ -1,6 +1,6 @@
 {% extends "base.html" %}
-{% block metatitle %}Tags{% endblock %}
-{% block title %}Tags{% endblock %}
+{% block metatitle %}tags | {{ SITENAME }}{% endblock %}
+{% block title %}tags | {{ SITENAME }}{% endblock %}
 
 {% block description %}A listing of all tags on this site{% endblock %}
 
@@ -8,7 +8,7 @@
 <article>
   <div class="article_text">
     <ul>
-      {% for tag, articles in tags|sort %}
+      {% for tag, articles in tags|sort_by_article_count %}
           <li><a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a> ({{ articles|count }})</li>
       {% endfor %}
     </ul>
