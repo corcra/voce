@@ -3,6 +3,7 @@ body {
   background-color: #FFFFFF;
   word-wrap: break-word;
   font-family: 'OpenSans', sans-serif;
+  font-style: normal;
   line-height: 1.7;
   font-size: 1.8em;
 }
