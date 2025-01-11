@@ -286,6 +286,7 @@ footer.entry-meta {
 .entry-title {
   color: #000000;
   margin-bottom: 30px;
+  font-style: italic;
 }
 .page .entry-title {
   margin-bottom: 30px;
@@ -319,9 +320,8 @@ article.post:first-child .post-inner-content {
   text-align: center;
 }
 .entry-title {
-  font-family: "Lora", serif;
-  font-style: italic;
-  margin-top: 5px;
+  font-family: "Lora Italic";
+  margin-top: 10px;
   margin-bottom: 15px;
 }
 .entry-footer {
